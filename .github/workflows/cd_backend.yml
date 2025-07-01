@@ -6,8 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # This is missing!
+        
       - name: Docker login
-        uses: Docker/login-action@v2
+        uses: docker/login-action@v2  # Fixed capitalization
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
@@ -15,8 +18,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ..
-          file: ../docker/Dockerfile.backend
+          context: .
+          file: docker/Dockerfile.backend
           push: true
-          tags: satya/app:${{ github.sha }} 
-
+          tags: satya/app:${{ github.sha }}
