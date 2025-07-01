@@ -1,0 +1,19 @@
+jobs:
+  build:
+    steps:
+
+      - name: Docker login
+        uses: Docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker/Dockerfile.backend
+          push: true
+          tags: satya/app:${{ github.sha }} 
+
