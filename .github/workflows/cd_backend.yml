@@ -12,7 +12,7 @@ jobs:
       - name: Docker login
         uses: docker/login-action@v3  # Fixed capitalization
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }} 
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and push
