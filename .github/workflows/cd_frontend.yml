@@ -24,3 +24,5 @@ jobs:
             - DATABASE_URL=${{ secrets.DATABASE_URL }} 
           push: true
           tags: satyanv /app-frontend:${{ github.sha }}
+
+          
