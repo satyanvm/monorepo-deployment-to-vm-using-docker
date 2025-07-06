@@ -14,6 +14,8 @@ RUN bun install
 RUN cd packages/db && bunx prisma generate && cd ../..
 RUN bun install 
 
+RUN apt-get update -y && apt-get install -y openssl
+
 EXPOSE 3000
 
 CMD ["bun", "run", "start:backend-http"]
