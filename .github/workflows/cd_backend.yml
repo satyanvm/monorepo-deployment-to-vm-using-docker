@@ -25,10 +25,10 @@ jobs:
 
       - name: Deploy to VM
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+          printf "%s" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
           mkdir -p /home/runner/.ssh
           ls /home/runner/.ssh
           touch /home/runner/.ssh/known_hosts
           echo "${{ secrets.KNOWN_HOSTS }}" &> /home/runner/.ssh/known_hosts
-          chmod 700 /home/runner/ssh_key 
+          chmod 600 /home/runner/ssh_key 
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.62.56.111 -t "docker stop user_backend && docker run --name user_backend -d -p 8080:8080 satyanv/app:${{ github.sha }}"
