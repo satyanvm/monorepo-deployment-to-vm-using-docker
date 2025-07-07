@@ -22,3 +22,6 @@ jobs:
           file: docker/Dockerfile.ws
           push: true
           tags: satyanv/app-ws:${{ github.sha }}
+
+      - name: Deploy to VM
+        
